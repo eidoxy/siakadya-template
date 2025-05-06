@@ -4,13 +4,19 @@
       "url": "/",
       "name": "Home",
       "icon": "menu-icon tf-icons ti ti-smart-home",
-      "slug": "pages-home"
+      "slug": "pages-admin-dashboard"
     },
     {
-      "url": "page-2",
-      "icon": "menu-icon tf-icons ti ti-file",
-      "name": "Page 2",
-      "slug": "pages-page-2"
+      "url": "mahasiswa",
+      "name": "Mahasiswa",
+      "icon": "menu-icon tf-icons ti ti-user",
+      "slug": "pages-admin-mahasiswa"
+    },
+    {
+      "url": "dosen",
+      "name": "Dosen",
+      "icon": "menu-icon tf-icons ti ti-user-square",
+      "slug": "pages-admin-dosen"
     },
     {
       "url": "pages/misc-error",
