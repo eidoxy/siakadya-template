@@ -8,9 +8,17 @@ use App\Http\Controllers\pages\MiscError;
 use App\Http\Controllers\authentications\LoginBasic;
 use App\Http\Controllers\authentications\RegisterBasic;
 
+use App\Http\Controllers\pages\admin\{
+  DashboardController,
+  MahasiswaController,
+  DosenController,
+};
+
 // Main Page Route
-Route::get('/', [HomePage::class, 'index'])->name('pages-home');
-Route::get('/page-2', [Page2::class, 'index'])->name('pages-page-2');
+Route::get('/', [DashboardController::class, 'index'])->name('pages-admin-dashboard');
+// Route::get('/dashboard', [DashboardController::class, 'index'])->name('pages-admin-dashboard');
+Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->name('pages-admin-mahasiswa');
+Route::get('/dosen', [DosenController::class, 'index'])->name('pages-admin-dosen');
 
 // locale
 Route::get('/lang/{locale}', [LanguageController::class, 'swap']);
