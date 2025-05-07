@@ -3,13 +3,6 @@
  */
 
 'use strict';
-// import API_ENDPOINTS from '../../config/apiConfig';
-
-$.ajaxSetup({
-  headers: {
-    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-  }
-});
 
 let fv, offCanvasEl;
 // * Form Add New Record
@@ -136,24 +129,16 @@ $(function () {
 
   if (dt_basic_table.length) {
     dt_basic = dt_basic_table.DataTable({
-      processing: true,
-      serverSide: true,
-      ajax: {
-        url: 'http://localhost:8000/api/mahasiswa',
-        dataSrc: function (json) {
-          console.log('Fetched data: ', json);
-          return json.data;
-        }
-      },
+      ajax: assetsPath + 'json/data-mata-kuliah.json',
       columns: [
         { data: '' },
-        { data: 'nrp' },
-        { data: 'nrp' },
-        { data: 'nama_mahasiswa' },
+        { data: 'kode_mk' },
+        { data: 'kode_mk' },
+        { data: 'nama_mk' },
         { data: 'kode_jurusan' },
-        { data: 'id_kelas' },
-        { data: 'jenis_kelamin' },
-        { data: 'status' },
+        { data: 'sks' },
+        { data: 'semester' },
+        { data: 'tipe_mk' },
         { data: '' }
       ],
       columnDefs: [
@@ -183,109 +168,76 @@ $(function () {
           }
         },
         {
-          // For NRP
+          // For Kode MK
           targets: 2,
-          searchable: false,
-          orderable: false,
+          searchable: true,
+          orderable: true,
           responsivePriority: 5
         },
         {
-          // For Nama
+          // For Nama MK
           targets: 3,
           searchable: true,
           orderable: true,
           responsivePriority: 3
         },
         {
-          // For Program Studi
+          // For Kode Jurusan
           targets: 4,
           searchable: true,
           orderable: true,
-          responsivePriority: 5,
+          responsivePriority: 3,
           render: function (data, type, full, meta) {
             var $kode_jurusan = full['kode_jurusan'];
-            var $jurusan_label = {
-              1: { title: 'Teknik Informatika', class: 'bg-label-primary' },
-              2: { title: 'Sains Data Terapan', class: 'bg-label-success' },
-              3: { title: 'Teknik Komputer', class: 'bg-label-danger' }
+            var $kode_jurusan_label = {
+              TI: { title: 'Teknik Informatika', class: 'bg-label-primary' },
+              SI: { title: 'Sistem Informasi', class: 'bg-label-success' },
+              TRM: { title: 'Teknik Rekayasa Multimedia', class: 'bg-label-danger' },
+              TK: { title: 'Teknik Komputer', class: 'bg-label-warning' },
+              DS: { title: 'Data Sains', class: 'bg-label-info' }
             };
-            if (typeof $jurusan_label[$kode_jurusan] === 'undefined') {
+            if (typeof $kode_jurusan_label[$kode_jurusan] === 'undefined') {
               return data;
             }
             return (
               '<span class="badge ' +
-              $jurusan_label[$kode_jurusan].class +
+              $kode_jurusan_label[$kode_jurusan].class +
               '">' +
-              $jurusan_label[$kode_jurusan].title +
+              $kode_jurusan_label[$kode_jurusan].title +
               '</span>'
             );
           }
         },
         {
-          // For Kelas
+          // For SKS
           targets: 5,
-          searchable: false,
+          searchable: true,
           orderable: true,
-          responsivePriority: 6,
-          render: function (data, type, full, meta) {
-            var $id_kelas = full['id_kelas'];
-            var $kelas_label = {
-              1: { title: 'A', class: 'bg-label-primary' },
-              2: { title: 'B', class: 'bg-label-success' },
-              3: { title: 'C', class: 'bg-label-danger' },
-              4: { title: 'D', class: 'bg-label-warning' }
-            };
-            if (typeof $kelas_label[$id_kelas] === 'undefined') {
-              return data;
-            }
-            return (
-              '<span class="badge ' + $kelas_label[$id_kelas].class + '">' + $kelas_label[$id_kelas].title + '</span>'
-            );
-          }
+          responsivePriority: 5
         },
         {
-          // For Jenis Kelamin
+          // For Semester
           targets: 6,
+          searchable: false,
+          orderable: true,
+          responsivePriority: 6
+        },
+        {
+          // For Tipe MK
+          targets: 7,
           searchable: false,
           orderable: true,
           responsivePriority: 7,
           render: function (data, type, full, meta) {
-            var $jenis_kelamin = full['jenis_kelamin'];
-            var $kelamin_label = {
-              L: { title: 'Laki-laki', class: 'bg-label-primary' },
-              P: { title: 'Perempuan', class: 'bg-label-success' }
+            var $type = full['tipe_mk'];
+            var $type_label = {
+              MW: { title: 'Wajib', class: 'bg-label-primary' },
+              MPK: { title: 'Pilihan', class: 'bg-label-success' }
             };
-            if (typeof $kelamin_label[$jenis_kelamin] === 'undefined') {
+            if (typeof $type_label[$type] === 'undefined') {
               return data;
             }
-            return (
-              '<span class="badge ' +
-              $kelamin_label[$jenis_kelamin].class +
-              '">' +
-              $kelamin_label[$jenis_kelamin].title +
-              '</span>'
-            );
-          }
-        },
-        {
-          // For Status
-          targets: 7,
-          searchable: false,
-          orderable: true,
-          responsivePriority: 8,
-          render: function (data, type, full, meta) {
-            var $status = full['status'];
-            var $status_label = {
-              Aktif: { title: 'Aktif', class: 'bg-label-success' },
-              Cuti: { title: 'Cuti', class: 'bg-label-warning' },
-              Keluar: { title: 'Keluar', class: 'bg-label-danger' }
-            };
-            if (typeof $status_label[$status] === 'undefined') {
-              return data;
-            }
-            return (
-              '<span class="badge ' + $status_label[$status].class + '">' + $status_label[$status].title + '</span>'
-            );
+            return '<span class="badge ' + $type_label[$type].class + '">' + $type_label[$type].title + '</span>';
           }
         },
         {

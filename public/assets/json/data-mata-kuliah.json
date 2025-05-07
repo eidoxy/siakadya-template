@@ -1,0 +1,68 @@
+{
+  "data": [
+    {
+      "kode_mk": "MK001",
+      "kode_jurusan": "TI",
+      "nama_mk": "Algoritma dan Pemrograman",
+      "sks": 3,
+      "semester": 1,
+      "tipe_mk": "MW"
+    },
+    {
+      "kode_mk": "MK002",
+      "kode_jurusan": "TI",
+      "nama_mk": "Struktur Data",
+      "sks": 3,
+      "semester": 2,
+      "tipe_mk": "MW"
+    },
+    {
+      "kode_mk": "MK003",
+      "kode_jurusan": "DS",
+      "nama_mk": "Basis Data",
+      "sks": 3,
+      "semester": 3,
+      "tipe_mk": "MW"
+    },
+    {
+      "kode_mk": "MK004",
+      "kode_jurusan": "TRM",
+      "nama_mk": "Jaringan Komputer",
+      "sks": 3,
+      "semester": 4,
+      "tipe_mk": "MW"
+    },
+    {
+      "kode_mk": "MK005",
+      "kode_jurusan": "TK",
+      "nama_mk": "Sistem Operasi",
+      "sks": 3,
+      "semester": 5,
+      "tipe_mk": "MW"
+    },
+    {
+      "kode_mk": "MK006",
+      "kode_jurusan": "TI",
+      "nama_mk": "Rekayasa Perangkat Lunak",
+      "sks": 3,
+      "semester": 6,
+      "tipe_mk": "MPK"
+    },
+    {
+      "kode_mk": "MK007",
+      "kode_jurusan": "DS",
+      "nama_mk": "Kecerdasan Buatan",
+      "sks": 3,
+      "semester": 7,
+      "tipe_mk": "MPK"
+    },
+    {
+      "kode_mk": "MK008",
+      "kode_jurusan": "TRM",
+      "nama_mk": "Keamanan Jaringan",
+      "sks": 3,
+      "semester": 8,
+      "tipe_mk": "MPK"
+    }
+  ]
+}
