@@ -3,13 +3,6 @@
  */
 
 'use strict';
-// import API_ENDPOINTS from '../../config/apiConfig';
-
-$.ajaxSetup({
-  headers: {
-    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-  }
-});
 
 let fv, offCanvasEl;
 // * Form Add New Record
@@ -136,24 +129,16 @@ $(function () {
 
   if (dt_basic_table.length) {
     dt_basic = dt_basic_table.DataTable({
-      processing: true,
-      serverSide: true,
-      ajax: {
-        url: 'http://localhost:8000/api/mahasiswa',
-        dataSrc: function (json) {
-          console.log('Fetched data: ', json);
-          return json.data;
-        }
-      },
+      ajax: assetsPath + 'json/data-dosen.json',
       columns: [
         { data: '' },
-        { data: 'nrp' },
-        { data: 'nrp' },
-        { data: 'nama_mahasiswa' },
-        { data: 'kode_jurusan' },
-        { data: 'id_kelas' },
+        { data: 'nip' },
+        { data: 'nip' },
+        { data: 'nama' },
+        { data: 'telepon' },
+        { data: 'program_studi' },
         { data: 'jenis_kelamin' },
-        { data: 'status' },
+        { data: 'jabatan' },
         { data: '' }
       ],
       columnDefs: [
@@ -183,10 +168,10 @@ $(function () {
           }
         },
         {
-          // For NRP
+          // For NIP
           targets: 2,
-          searchable: false,
-          orderable: false,
+          searchable: true,
+          orderable: true,
           responsivePriority: 5
         },
         {
@@ -197,95 +182,41 @@ $(function () {
           responsivePriority: 3
         },
         {
-          // For Program Studi
+          // For Telepon
           targets: 4,
           searchable: true,
           orderable: true,
-          responsivePriority: 5,
-          render: function (data, type, full, meta) {
-            var $kode_jurusan = full['kode_jurusan'];
-            var $jurusan_label = {
-              1: { title: 'Teknik Informatika', class: 'bg-label-primary' },
-              2: { title: 'Sains Data Terapan', class: 'bg-label-success' },
-              3: { title: 'Teknik Komputer', class: 'bg-label-danger' }
-            };
-            if (typeof $jurusan_label[$kode_jurusan] === 'undefined') {
-              return data;
-            }
-            return (
-              '<span class="badge ' +
-              $jurusan_label[$kode_jurusan].class +
-              '">' +
-              $jurusan_label[$kode_jurusan].title +
-              '</span>'
-            );
-          }
+          responsivePriority: 5
         },
         {
-          // For Kelas
+          // For Program Studi
           targets: 5,
           searchable: false,
           orderable: true,
-          responsivePriority: 6,
-          render: function (data, type, full, meta) {
-            var $id_kelas = full['id_kelas'];
-            var $kelas_label = {
-              1: { title: 'A', class: 'bg-label-primary' },
-              2: { title: 'B', class: 'bg-label-success' },
-              3: { title: 'C', class: 'bg-label-danger' },
-              4: { title: 'D', class: 'bg-label-warning' }
-            };
-            if (typeof $kelas_label[$id_kelas] === 'undefined') {
-              return data;
-            }
-            return (
-              '<span class="badge ' + $kelas_label[$id_kelas].class + '">' + $kelas_label[$id_kelas].title + '</span>'
-            );
-          }
+          responsivePriority: 6
         },
         {
           // For Jenis Kelamin
           targets: 6,
           searchable: false,
           orderable: true,
-          responsivePriority: 7,
-          render: function (data, type, full, meta) {
-            var $jenis_kelamin = full['jenis_kelamin'];
-            var $kelamin_label = {
-              L: { title: 'Laki-laki', class: 'bg-label-primary' },
-              P: { title: 'Perempuan', class: 'bg-label-success' }
-            };
-            if (typeof $kelamin_label[$jenis_kelamin] === 'undefined') {
-              return data;
-            }
-            return (
-              '<span class="badge ' +
-              $kelamin_label[$jenis_kelamin].class +
-              '">' +
-              $kelamin_label[$jenis_kelamin].title +
-              '</span>'
-            );
-          }
+          responsivePriority: 7
         },
         {
-          // For Status
+          // For Jabatan
           targets: 7,
           searchable: false,
           orderable: true,
           responsivePriority: 8,
           render: function (data, type, full, meta) {
-            var $status = full['status'];
-            var $status_label = {
-              Aktif: { title: 'Aktif', class: 'bg-label-success' },
-              Cuti: { title: 'Cuti', class: 'bg-label-warning' },
-              Keluar: { title: 'Keluar', class: 'bg-label-danger' }
+            var status = {
+              'Dosen Tetap': { title: 'Dosen Tetap', class: 'bg-label-success' },
+              'Dosen Tidak Tetap': { title: 'Dosen Tidak Tetap', class: 'bg-label-danger' }
             };
-            if (typeof $status_label[$status] === 'undefined') {
-              return data;
+            if (typeof status[data] !== 'undefined') {
+              return '<span class="badge rounded-pill ' + status[data].class + '">' + status[data].title + '</span>';
             }
-            return (
-              '<span class="badge ' + $status_label[$status].class + '">' + $status_label[$status].title + '</span>'
-            );
+            return data;
           }
         },
         {

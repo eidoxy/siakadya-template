@@ -33,7 +33,7 @@ $configData = Helper::appClasses();
 
 <!-- Page Scripts -->
 @section('page-script')
-@vite(['resources/assets/js/tables-datatables-basic.js'])
+@vite(['resources/assets/js/admin/table-dosen.js'])
 @endsection
 
 @section('content')
@@ -45,12 +45,12 @@ $configData = Helper::appClasses();
           <tr>
             <th></th>
             <th></th>
-            <th>id</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Date</th>
-            <th>Salary</th>
-            <th>Status</th>
+            <th>NIP</th>
+            <th>Nama</th>
+            <th>Telepon</th>
+            <th>Program Studi</th>
+            <th>Jenis Kelamin</th>
+            <th>Jabatan</th>
             <th>Action</th>
           </tr>
         </thead>

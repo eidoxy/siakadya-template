@@ -1,0 +1,69 @@
+{
+  "data": [
+    {
+      "nip": "1234567890",
+      "nama": "Dr. Andi Setiawan",
+      "email": "andisetiawan@example.com",
+      "telepon": "081234567890",
+      "tanggal_lahir": "1980-05-15",
+      "jenis_kelamin": "Laki-laki",
+      "alamat": "Jl. Merdeka No. 1, Surabaya",
+      "program_studi": "Teknik Informatika",
+      "jabatan": "Dosen Tetap",
+      "golongan": "III/a",
+      "isWali": false
+    },
+    {
+      "nip": "0987654321",
+      "nama": "Dr. Siti Aminah",
+      "email": "sitiaminah@example.com",
+      "telepon": "082345678901",
+      "tanggal_lahir": "1985-08-20",
+      "jenis_kelamin": "Perempuan",
+      "alamat": "Jl. Pahlawan No. 2, Surabaya",
+      "program_studi": "Sistem Informasi",
+      "jabatan": "Dosen Tidak Tetap",
+      "golongan": "II/b",
+      "isWali": true
+    },
+    {
+      "nip": "1122334455",
+      "nama": "Dr. Budi Santoso",
+      "email": "budisantoso@example.com",
+      "telepon": "083456789012",
+      "tanggal_lahir": "1978-12-30",
+      "jenis_kelamin": "Laki-laki",
+      "alamat": "Jl. Diponegoro No. 3, Surabaya",
+      "program_studi": "Teknik Komputer",
+      "jabatan": "Dosen Tetap",
+      "golongan": "IV/a",
+      "isWali": false
+    },
+    {
+      "nip": "2233445566",
+      "nama": "Dr. Rina Wulandari",
+      "email": "rinawulandari@example.com",
+      "telepon": "084567890123",
+      "tanggal_lahir": "1990-03-10",
+      "jenis_kelamin": "Perempuan",
+      "alamat": "Jl. Soekarno-Hatta No. 4, Surabaya",
+      "program_studi": "Teknik Elektro",
+      "jabatan": "Dosen Tidak Tetap",
+      "golongan": "III/c",
+      "isWali": true
+    },
+    {
+      "nip": "3344556677",
+      "nama": "Dr. Agus Prabowo",
+      "email": "agusprabowo@example.com",
+      "telepon": "085678901234",
+      "tanggal_lahir": "1982-07-25",
+      "jenis_kelamin": "Laki-laki",
+      "alamat": "Jl. Gubeng No. 5, Surabaya",
+      "program_studi": "Teknik Mesin",
+      "jabatan": "Dosen Tetap",
+      "golongan": "IV/b",
+      "isWali": false
+    }
+  ]
+}
