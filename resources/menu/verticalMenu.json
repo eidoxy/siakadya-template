@@ -4,43 +4,43 @@
       "url": "/",
       "name": "Home",
       "icon": "menu-icon tf-icons ti ti-smart-home",
-      "slug": "pages-admin-dashboard"
+      "slug": "admin-dashboard"
     },
     {
-      "url": "mahasiswa",
+      "url": "admin/mahasiswa",
       "name": "Mahasiswa",
       "icon": "menu-icon tf-icons ti ti-user",
-      "slug": "pages-admin-mahasiswa"
+      "slug": "admin-mahasiswa"
     },
     {
-      "url": "dosen",
+      "url": "admin/dosen",
       "name": "Dosen",
       "icon": "menu-icon tf-icons ti ti-user-square",
-      "slug": "pages-admin-dosen"
+      "slug": "admin-dosen"
     },
     {
-      "url": "mata-kuliah",
+      "url": "admin/mata-kuliah",
       "name": "Mata Kuliah",
       "icon": "menu-icon tf-icons ti ti-books",
-      "slug": "pages-admin-mata-kuliah"
+      "slug": "admin-mata-kuliah"
     },
     {
-      "url": "kelas",
+      "url": "admin/kelas",
       "name": "Kelas",
       "icon": "menu-icon tf-icons ti ti-chalkboard",
-      "slug": "pages-admin-kelas"
+      "slug": "admin-kelas"
     },
     {
-      "url": "jadwal-kuliah",
+      "url": "admin/jadwal-kuliah",
       "name": "Jadwal Kuliah",
       "icon": "menu-icon tf-icons ti ti-alarm",
-      "slug": "pages-admin-jadwal-kuliah"
+      "slug": "admin-jadwal-kuliah"
     },
     {
-      "url": "tahun-ajar",
+      "url": "admin/tahun-ajar",
       "name": "Tahun Ajar",
       "icon": "menu-icon tf-icons ti ti-calendar-clock",
-      "slug": "pages-admin-tahun-ajar"
+      "slug": "admin-tahun-ajar"
     }
   ]
 }
