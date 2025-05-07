@@ -10,15 +10,23 @@ use App\Http\Controllers\authentications\RegisterBasic;
 
 use App\Http\Controllers\pages\admin\{
   DashboardController,
-  MahasiswaController,
   DosenController,
+  JadwalKuliahController,
+  KelasController,
+  MahasiswaController,
+  MataKuliahController,
+  TahunAjarController
 };
 
 // Main Page Route
 Route::get('/', [DashboardController::class, 'index'])->name('pages-admin-dashboard');
 // Route::get('/dashboard', [DashboardController::class, 'index'])->name('pages-admin-dashboard');
-Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->name('pages-admin-mahasiswa');
 Route::get('/dosen', [DosenController::class, 'index'])->name('pages-admin-dosen');
+Route::get('/jadwal-kuliah', [JadwalKuliahController::class, 'index'])->name('pages-admin-jadwal-kuliah');
+Route::get('/kelas', [KelasController::class, 'index'])->name('pages-admin-kelas');
+Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->name('pages-admin-mahasiswa');
+Route::get('/mata-kuliah', [MataKuliahController::class, 'index'])->name('pages-admin-mata-kuliah');
+Route::get('/tahun-ajar', [TahunAjarController::class, 'index'])->name('pages-admin-tahun-ajar');
 
 // Testing Get Data
 Route::get('/tahun-ajar', function () {
