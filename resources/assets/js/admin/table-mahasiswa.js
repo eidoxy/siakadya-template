@@ -3,6 +3,13 @@
  */
 
 'use strict';
+// import API_ENDPOINTS from '../../config/apiConfig';
+
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
 
 let fv, offCanvasEl;
 // * Form Add New Record
@@ -129,14 +136,22 @@ $(function () {
 
   if (dt_basic_table.length) {
     dt_basic = dt_basic_table.DataTable({
-      ajax: assetsPath + 'json/data-mahasiswa.json',
+      processing: true,
+      serverSide: true,
+      ajax: {
+        url: 'http://localhost:8000/api/mahasiswa',
+        dataSrc: function (json) {
+          console.log('Fetched data: ', json);
+          return json.data;
+        }
+      },
       columns: [
         { data: '' },
         { data: 'nrp' },
         { data: 'nrp' },
-        { data: 'nama' },
-        { data: 'program_studi' },
-        { data: 'kelas' },
+        { data: 'nama_mahasiswa' },
+        { data: 'kode_jurusan' },
+        { data: 'id_kelas' },
         { data: 'jenis_kelamin' },
         { data: 'status' },
         { data: '' }
@@ -170,8 +185,8 @@ $(function () {
         {
           // For NRP
           targets: 2,
-          searchable: true,
-          orderable: true,
+          searchable: false,
+          orderable: false,
           responsivePriority: 5
         },
         {
@@ -186,14 +201,47 @@ $(function () {
           targets: 4,
           searchable: true,
           orderable: true,
-          responsivePriority: 5
+          responsivePriority: 5,
+          render: function (data, type, full, meta) {
+            var $kode_jurusan = full['kode_jurusan'];
+            var $jurusan_label = {
+              1: { title: 'Teknik Informatika', class: 'bg-label-primary' },
+              2: { title: 'Sains Data Terapan', class: 'bg-label-success' },
+              3: { title: 'Teknik Komputer', class: 'bg-label-danger' }
+            };
+            if (typeof $jurusan_label[$kode_jurusan] === 'undefined') {
+              return data;
+            }
+            return (
+              '<span class="badge ' +
+              $jurusan_label[$kode_jurusan].class +
+              '">' +
+              $jurusan_label[$kode_jurusan].title +
+              '</span>'
+            );
+          }
         },
         {
           // For Kelas
           targets: 5,
           searchable: false,
           orderable: true,
-          responsivePriority: 6
+          responsivePriority: 6,
+          render: function (data, type, full, meta) {
+            var $id_kelas = full['id_kelas'];
+            var $kelas_label = {
+              1: { title: 'A', class: 'bg-label-primary' },
+              2: { title: 'B', class: 'bg-label-success' },
+              3: { title: 'C', class: 'bg-label-danger' },
+              4: { title: 'D', class: 'bg-label-warning' }
+            };
+            if (typeof $kelas_label[$id_kelas] === 'undefined') {
+              return data;
+            }
+            return (
+              '<span class="badge ' + $kelas_label[$id_kelas].class + '">' + $kelas_label[$id_kelas].title + '</span>'
+            );
+          }
         },
         {
           // For Jenis Kelamin
@@ -201,6 +249,23 @@ $(function () {
           searchable: false,
           orderable: true,
           responsivePriority: 7,
+          render: function (data, type, full, meta) {
+            var $jenis_kelamin = full['jenis_kelamin'];
+            var $kelamin_label = {
+              L: { title: 'Laki-laki', class: 'bg-label-primary' },
+              P: { title: 'Perempuan', class: 'bg-label-success' }
+            };
+            if (typeof $kelamin_label[$jenis_kelamin] === 'undefined') {
+              return data;
+            }
+            return (
+              '<span class="badge ' +
+              $kelamin_label[$jenis_kelamin].class +
+              '">' +
+              $kelamin_label[$jenis_kelamin].title +
+              '</span>'
+            );
+          }
         },
         {
           // For Status
@@ -211,8 +276,9 @@ $(function () {
           render: function (data, type, full, meta) {
             var $status = full['status'];
             var $status_label = {
-              1: { title: 'Aktif', class: 'bg-label-success' },
-              0: { title: 'Tidak Aktif', class: 'bg-label-danger' },
+              Aktif: { title: 'Aktif', class: 'bg-label-success' },
+              Cuti: { title: 'Cuti', class: 'bg-label-warning' },
+              Keluar: { title: 'Keluar', class: 'bg-label-danger' }
             };
             if (typeof $status_label[$status] === 'undefined') {
               return data;
