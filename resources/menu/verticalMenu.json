@@ -19,25 +19,28 @@
       "slug": "pages-admin-dosen"
     },
     {
-      "url": "pages/misc-error",
-      "name": "Error",
-      "icon": "menu-icon tf-icons ti ti-alert-triangle",
-      "slug": "pages-misc-error",
-      "target": "_blank"
+      "url": "mata-kuliah",
+      "name": "Mata Kuliah",
+      "icon": "menu-icon tf-icons ti ti-books",
+      "slug": "pages-admin-mata-kuliah"
     },
     {
-      "url": "auth/login-basic",
-      "name": "Login",
-      "icon": "menu-icon tf-icons ti ti-login",
-      "slug": "auth-login-basic",
-      "target": "_blank"
+      "url": "kelas",
+      "name": "Kelas",
+      "icon": "menu-icon tf-icons ti ti-chalkboard",
+      "slug": "pages-admin-kelas"
     },
     {
-      "url": "auth/register-basic",
-      "name": "Register",
-      "icon": "menu-icon tf-icons ti ti-user",
-      "slug": "auth-register-basic",
-      "target": "_blank"
+      "url": "jadwal-kuliah",
+      "name": "Jadwal Kuliah",
+      "icon": "menu-icon tf-icons ti ti-alarm",
+      "slug": "pages-admin-jadwal-kuliah"
+    },
+    {
+      "url": "tahun-ajar",
+      "name": "Tahun Ajar",
+      "icon": "menu-icon tf-icons ti ti-calendar-clock",
+      "slug": "pages-admin-tahun-ajar"
     }
   ]
 }

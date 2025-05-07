@@ -4,7 +4,7 @@ $configData = Helper::appClasses();
 
 @extends('layouts/layoutMaster')
 
-@section('title', 'Mahasiswa')
+@section('title', 'Jadwal Kuliah')
 
 <!-- Vendor Styles -->
 @section('vendor-style')
@@ -33,7 +33,7 @@ $configData = Helper::appClasses();
 
 <!-- Page Scripts -->
 @section('page-script')
-@vite(['resources/assets/js/admin/table-mahasiswa.js'])
+@vite(['resources/assets/js/tables-datatables-basic.js'])
 @endsection
 
 @section('content')
@@ -45,11 +45,11 @@ $configData = Helper::appClasses();
           <tr>
             <th></th>
             <th></th>
-            <th>NRP</th>
-            <th>Nama</th>
-            <th>Program Studi</th>
-            <th>Kelas</th>
-            <th>Jenis Kelamin</th>
+            <th>id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Date</th>
+            <th>Salary</th>
             <th>Status</th>
             <th>Action</th>
           </tr>
