@@ -28,9 +28,28 @@ class MahasiswaCollection extends ResourceCollection
     $filteredRecords = $totalRecords; // Assume no filtering for now
 
     // Generate fake data for the current page
-    $data = Mahasiswa::factory()
-      ->count(min($length, $totalRecords - $start)) // Generate only the required number of records
-      ->make()
+    $data = Mahasiswa::query()
+      ->offset($start)
+      ->limit($length)
+      ->get()
+      ->map(
+        function ($mahasiswa) {
+          return [
+            'nrp' => $mahasiswa->nrp,
+            'kode_jurusan' => $mahasiswa->kode_jurusan,
+            'id_kelas' => $mahasiswa->id_kelas,
+            'nama' => $mahasiswa->nama_mahasiswa,
+            'jenis_kelamin' => $mahasiswa->jenis_kelamin,
+            'telepon' => $mahasiswa->telepon,
+            'email' => $mahasiswa->email,
+            'tanggal_lahir' => $mahasiswa->tanggal_lahir,
+            'tanggal_masuk' => $mahasiswa->tanggal_masuk,
+            'status' => $mahasiswa->status,
+            'alamat_jalan' => $mahasiswa->alamat,
+
+          ];
+        }
+      )
       ->toArray();
 
     return [

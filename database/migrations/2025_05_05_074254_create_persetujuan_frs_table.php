@@ -12,12 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('persetujuan_frs', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('id_frs')->constrained('frs')->onDelete('cascade');
-            $table->foreignId('id_jadwal')->constrained('jadwal')->onDelete('cascade');
-            $table->foreignId('nip')->constrained('dosen')->onDelete('cascade');
-            $table->foreignId('kode_matakuliah')->constrained('matakuliah')->onDelete('cascade');
+            $table->uuid('id')->primary();
+            $table->foreignUuid('frs_id')->constrained('frs')->onDelete('cascade');
+            $table->foreignUuid('jadwal_id')->constrained('jadwal')->onDelete('cascade');
             $table->enum('status', ['disetujui', 'ditolak', 'pending'])->default('pending');
+            $table->date('tanggal_persetujuan');
             $table->timestamps();
         });
     }

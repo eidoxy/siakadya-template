@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Resources\admin\DosenCollection;
+use App\Http\Resources\admin\KelasCollection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Resources\admin\MahasiswaCollection;
+use App\Http\Resources\admin\MataKuliahCollection;
 
 Route::get('/user', function (Request $request) {
   return $request->user();
@@ -27,17 +30,17 @@ Route::get('/ruangan', function () {
 });
 
 Route::get('/kelas', function () {
-  return response()->json([
-    'data' => \App\Models\Kelas::all()
-  ]);
+  return new KelasCollection([]);
 });
 
 Route::get('/dosen', function () {
-  return response()->json([
-    'data' => \App\Models\Dosen::all()
-  ]);
+  return new DosenCollection([]);
 });
 
 Route::get('/mahasiswa', function () {
   return new MahasiswaCollection([]);
+});
+
+Route::get('/matakuliah', function () {
+  return new MataKuliahCollection([]);
 });

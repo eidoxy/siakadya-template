@@ -129,14 +129,20 @@ $(function () {
 
   if (dt_basic_table.length) {
     dt_basic = dt_basic_table.DataTable({
-      ajax: assetsPath + 'json/data-dosen.json',
+      ajax: {
+        url: '/api/dosen',
+        dataSrc: function (json) {
+          console.log('Fetched data: ', json);
+          return json.data;
+        }
+      },
       columns: [
         { data: '' },
         { data: 'nip' },
         { data: 'nip' },
-        { data: 'nama' },
+        { data: 'nama_dosen' },
         { data: 'telepon' },
-        { data: 'program_studi' },
+        { data: 'golongan_akhir' },
         { data: 'jenis_kelamin' },
         { data: 'jabatan' },
         { data: '' }
@@ -200,7 +206,24 @@ $(function () {
           targets: 6,
           searchable: false,
           orderable: true,
-          responsivePriority: 7
+          responsivePriority: 7,
+          render: function (data, type, full, meta) {
+            var $jenis_kelamin = full['jenis_kelamin'];
+            var $kelamin_label = {
+              L: { title: 'Laki-laki', class: 'bg-label-primary' },
+              P: { title: 'Perempuan', class: 'bg-label-success' }
+            };
+            if (typeof $kelamin_label[$jenis_kelamin] === 'undefined') {
+              return data;
+            }
+            return (
+              '<span class="badge ' +
+              $kelamin_label[$jenis_kelamin].class +
+              '">' +
+              $kelamin_label[$jenis_kelamin].title +
+              '</span>'
+            );
+          }
         },
         {
           // For Jabatan

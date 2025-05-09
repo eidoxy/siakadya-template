@@ -130,7 +130,7 @@ $(function () {
   if (dt_basic_table.length) {
     dt_basic = dt_basic_table.DataTable({
       ajax: {
-        url: '/api/matakuliah',
+        url: '/api/kelas',
         dataSrc: function (json) {
           console.log('Fetched data: ', json);
           return json.data;
@@ -138,13 +138,9 @@ $(function () {
       },
       columns: [
         { data: '' },
-        { data: 'kode_matakuliah' },
-        { data: 'kode_matakuliah' },
-        { data: 'nama_matakuliah' },
-        { data: 'kode_jurusan' },
-        { data: 'sks' },
-        { data: 'semester' },
-        { data: 'tipe_matakuliah' },
+        { data: 'nama_kelas' },
+        { data: 'nama_kelas' },
+        { data: 'nama_dosen' },
         { data: '' }
       ],
       columnDefs: [
@@ -174,77 +170,22 @@ $(function () {
           }
         },
         {
-          // For Kode MK
+          // For Nama Kelas
           targets: 2,
           searchable: true,
           orderable: true,
           responsivePriority: 5
         },
         {
-          // For Nama MK
+          // For Nama Dosen
           targets: 3,
           searchable: true,
           orderable: true,
-          responsivePriority: 3
-        },
-        {
-          // For Kode Jurusan
-          targets: 4,
-          searchable: true,
-          orderable: true,
           responsivePriority: 3,
-          render: function (data, type, full, meta) {
-            var $kode_jurusan = full['kode_jurusan'];
-            var $kode_jurusan_label = {
-              TI: { title: 'Teknik Informatika', class: 'bg-label-primary' },
-              SI: { title: 'Sistem Informasi', class: 'bg-label-success' },
-              TRM: { title: 'Teknik Rekayasa Multimedia', class: 'bg-label-danger' },
-              TK: { title: 'Teknik Komputer', class: 'bg-label-warning' },
-              DS: { title: 'Data Sains', class: 'bg-label-info' }
-            };
-            if (typeof $kode_jurusan_label[$kode_jurusan] === 'undefined') {
-              return data;
-            }
-            return (
-              '<span class="badge ' +
-              $kode_jurusan_label[$kode_jurusan].class +
-              '">' +
-              $kode_jurusan_label[$kode_jurusan].title +
-              '</span>'
-            );
-          }
-        },
-        {
-          // For SKS
-          targets: 5,
-          searchable: true,
-          orderable: true,
-          responsivePriority: 5
-        },
-        {
-          // For Semester
-          targets: 6,
-          searchable: false,
-          orderable: true,
-          responsivePriority: 6
-        },
-        {
-          // For Tipe MK
-          targets: 7,
-          searchable: false,
-          orderable: true,
-          responsivePriority: 7,
-          render: function (data, type, full, meta) {
-            var $type = full['tipe_mk'];
-            var $type_label = {
-              MW: { title: 'Wajib', class: 'bg-label-primary' },
-              MPK: { title: 'Pilihan', class: 'bg-label-success' }
-            };
-            if (typeof $type_label[$type] === 'undefined') {
-              return data;
-            }
-            return '<span class="badge ' + $type_label[$type].class + '">' + $type_label[$type].title + '</span>';
-          }
+        //   render: function (data, type, full, meta) {
+        //     // This ensures null/undefined values display as a dash
+        //     return data || '-';
+        //   }
         },
         {
           // Actions
