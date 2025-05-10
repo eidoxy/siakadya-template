@@ -2,27 +2,37 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Mahasiswa extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
 
     protected $table = 'mahasiswa';
 
     protected $fillable = [
-        'kode_jurusan',
-        'id_kelas',
-        'nama_mahasiswa',
+        'prodi_id',
+        'kelas_id',
+        'nrp',
+        'nama',
         'jenis_kelamin',
         'telepon',
         'email',
         'password',
+        'agama',
+        'semester',
         'tanggal_lahir',
         'tanggal_masuk',
         'status',
-        'alamat',
+        'alamat_jalan',
+        'provinsi',
+        'kode_pos',
+        'negara',
+        'kelurahan',
+        'kecamatan',
+        'kota'
     ];
 
     protected $hidden = ['password'];
@@ -32,14 +42,14 @@ class Mahasiswa extends Model
         'tanggal_masuk' => 'date',
     ];
 
-    public function jurusan()
+    public function programStudi()
     {
-        return $this->belongsTo(Jurusan::class, 'kode_jurusan');
+        return $this->belongsTo(ProgramStudi::class, 'prodi_id');
     }
 
     public function kelas()
     {
-        return $this->belongsTo(Kelas::class, 'id_kelas');
+        return $this->belongsTo(Kelas::class, 'kelas_id');
     }
 }
 

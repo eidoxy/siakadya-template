@@ -18,11 +18,11 @@ class MahasiswaCollection extends ResourceCollection
     // Simulate server-side processing
     $draw = $request->get('draw', 1); // DataTables draw counter
     $start = $request->get('start', 0); // Starting record index
-    $length = $request->get('length', 10); // Number of records per page
+    $length = $request->get('length', 20); // Number of records per page
     $searchValue = $request->get('search')['value'] ?? ''; // Search value
 
     // Simulate total records (e.g., from a database query)
-    $totalRecords = 10; // Example: Total number of records in the database
+    $totalRecords = 20; // Example: Total number of records in the database
 
     // Simulate filtered records (e.g., based on search functionality)
     $filteredRecords = $totalRecords; // Assume no filtering for now
@@ -35,18 +35,25 @@ class MahasiswaCollection extends ResourceCollection
       ->map(
         function ($mahasiswa) {
           return [
+            'program_studi' => $mahasiswa->programStudi->nama,
+            'kelas' => $mahasiswa->kelas->pararel,
             'nrp' => $mahasiswa->nrp,
-            'kode_jurusan' => $mahasiswa->kode_jurusan,
-            'id_kelas' => $mahasiswa->id_kelas,
-            'nama' => $mahasiswa->nama_mahasiswa,
+            'nama_mahasiswa' => $mahasiswa->nama,
             'jenis_kelamin' => $mahasiswa->jenis_kelamin,
             'telepon' => $mahasiswa->telepon,
             'email' => $mahasiswa->email,
+            'agama' => $mahasiswa->agama,
+            'semester' => $mahasiswa->semester,
             'tanggal_lahir' => $mahasiswa->tanggal_lahir,
             'tanggal_masuk' => $mahasiswa->tanggal_masuk,
             'status' => $mahasiswa->status,
-            'alamat_jalan' => $mahasiswa->alamat,
-
+            'alamat_jalan' => $mahasiswa->alamat_jalan,
+            'provinsi' => $mahasiswa->provinsi,
+            'kode_pos' => $mahasiswa->kode_pos,
+            'negara' => $mahasiswa->negara,
+            'kelurahan' => $mahasiswa->kelurahan,
+            'kecamatan' => $mahasiswa->kecamatan,
+            'kota' => $mahasiswa->kota
           ];
         }
       )

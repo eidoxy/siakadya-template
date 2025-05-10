@@ -18,11 +18,11 @@ class MataKuliahCollection extends ResourceCollection
         // Simulate server-side processing
         $draw = $request->get('draw', 1); // DataTables draw counter
         $start = $request->get('start', 0); // Starting record index
-        $length = $request->get('length', 10); // Number of records per page
+        $length = $request->get('length', 20); // Number of records per page
         $searchValue = $request->get('search')['value'] ?? ''; // Search value
 
         // Simulate total records (e.g., from a database query)
-        $totalRecords = 10; // Example: Total number of records in the database
+        $totalRecords = 20; // Example: Total number of records in the database
 
         // Simulate filtered records (e.g., based on search functionality)
         $filteredRecords = $totalRecords; // Assume no filtering for now
@@ -35,11 +35,11 @@ class MataKuliahCollection extends ResourceCollection
             ->map(
                 function ($matakuliah) {
                     return [
-                        'kode_matakuliah' => $matakuliah->kode_matakuliah,
-                        'kode_jurusan' => $matakuliah->kode_jurusan,
-                        'nama_matakuliah' => $matakuliah->nama_matakuliah,
-                        'sks' => $matakuliah->sks,
+                        'program_studi' => $matakuliah->programStudi->nama,
+                        'kode_matakuliah' => $matakuliah->kode,
+                        'nama_matakuliah' => $matakuliah->nama,
                         'semester' => $matakuliah->semester,
+                        'sks' => $matakuliah->sks,
                         'tipe_matakuliah' => $matakuliah->tipe_matakuliah,
                     ];
                 }

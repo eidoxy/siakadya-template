@@ -2,23 +2,25 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Ruangan extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
 
     protected $table = 'ruangan';
 
     protected $fillable = [
-        'nama_ruangan',
-        'gedung',
+        'kode',
+        'nama',
+        'gedung'
     ];
 
     // Relasi ke Jadwal (jika ruangan digunakan di jadwal kuliah)
     public function jadwal()
     {
-        return $this->hasMany(Jadwal::class, 'kode_ruangan');
+        return $this->hasMany(Jadwal::class, 'jadwal_id');
     }
 }
