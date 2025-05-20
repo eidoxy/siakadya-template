@@ -428,9 +428,4 @@ $(function () {
       });
     }
   });
-
-  // Delete Record
-  $('.datatables-basic tbody').on('click', '.delete-record', function () {
-    dt_basic.row($(this).parents('tr')).remove().draw();
-  });
 });
