@@ -33,7 +33,7 @@ Route::get('/mahasiswa', function () {
 Route::get('/mahasiswa/{id}', [MahasiswaController::class, 'show']);
 Route::post('/mahasiswa/store', [MahasiswaController::class, 'store']);
 Route::put('/mahasiswa/update/{id}', [MahasiswaController::class, 'update']);
-Route::delete('mahasiswa/destroy/{id}', [MahasiswaController::class, 'destroy']);
+Route::delete('/mahasiswa/destroy/{id}', [MahasiswaController::class, 'destroy']);
 
 // * API Dosen
 // TODO: implementasi API Dosen
@@ -57,7 +57,7 @@ Route::get('/matakuliah', function () {
 Route::get('/matakuliah/{id}', [MataKuliahController::class, 'show']);
 Route::post('/matakuliah/store', [MataKuliahController::class, 'store']);
 Route::put('/matakuliah/update/{id}', [MataKuliahController::class, 'update']);
-Route::delete('matakuliah/destroy/{id}', [MataKuliahController::class, 'destroy']);
+Route::delete('/matakuliah/destroy/{id}', [MataKuliahController::class, 'destroy']);
 
 // * API Kelas
 // TODO: implementasi API Kelas
@@ -69,7 +69,7 @@ Route::get('/kelas', function () {
 Route::get('/kelas/{id}', [KelasController::class, 'show']);
 Route::post('/kelas/store', [KelasController::class, 'store']);
 Route::put('/kelas/update/{id}', [KelasController::class, 'update']);
-Route::delete('kelas/destroy/{id}', [KelasController::class, 'destroy']);
+Route::delete('/kelas/destroy/{id}', [KelasController::class, 'destroy']);
 
 // * API Jadwal Kuliah
 // TODO: implementasi API Jadwal Kuliah
@@ -93,4 +93,4 @@ Route::get('/tahun-ajar', function () {
 Route::get('/tahun-ajar/{id}', [TahunAjarController::class, 'show']);
 Route::post('/tahun-ajar/store', [TahunAjarController::class, 'store']);
 Route::put('/tahun-ajar/update/{id}', [TahunAjarController::class, 'update']);
-Route::delete('tahun-ajar/destroy/{id}', [TahunAjarController::class, 'destroy']);
+Route::delete('/tahun-ajar/destroy/{id}', [TahunAjarController::class, 'destroy']);
