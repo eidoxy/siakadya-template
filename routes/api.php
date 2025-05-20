@@ -87,23 +87,9 @@ Route::get('/jadwal', function () {
   return new JadwalCollection([]);
 });
 Route::get('/jadwal/{id}', [JadwalKuliahController::class, 'show']);
-Route::get('/jadwal/{id}', [JadwalKuliahController::class, 'show']);
 Route::post('/jadwal/store', [JadwalKuliahController::class, 'store']);
 Route::put('/jadwal/update/{id}', [JadwalKuliahController::class, 'update']);
 Route::delete('jadwal/destroy/{id}', [JadwalKuliahController::class, 'destroy']);
-
-// * API Tahun Ajar
-// TODO: implementasi API Tahun Ajar
-// *********************************************************************************
-
-Route::get('/tahun-ajar', function () {
-  return new TahunAjarCollection([]);
-});
-Route::get('/tahun-ajar/{id}', [TahunAjarController::class, 'show']);
-Route::post('/tahun-ajar/store', [TahunAjarController::class, 'store']);
-Route::put('/tahun-ajar/update/{id}', [TahunAjarController::class, 'update']);
-Route::delete('/tahun-ajar/destroy/{id}', [TahunAjarController::class, 'destroy']);
-
 
 // * API Tahun Ajar
 // TODO: implementasi API Tahun Ajar

@@ -186,16 +186,19 @@ $(function () {
           searchable: false,
           render: function (data, type, full, meta) {
             return (
-              '<div class="d-inline-block">' +
-              '<a href="javascript:;" class="btn btn-sm btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="ti ti-dots-vertical ti-md"></i></a>' +
-              '<ul class="dropdown-menu dropdown-menu-end m-0">' +
-              '<li><a href="javascript:;" class="dropdown-item">Details</a></li>' +
-              '<li><a href="javascript:;" class="dropdown-item">Archive</a></li>' +
-              '<div class="dropdown-divider"></div>' +
-              '<li><a href="javascript:;" class="dropdown-item text-danger delete-record">Delete</a></li>' +
-              '</ul>' +
-              '</div>' +
-              '<a href="javascript:;" class="btn btn-sm btn-text-secondary rounded-pill btn-icon item-edit"><i class="ti ti-pencil ti-md"></i></a>'
+              // '<div class="d-inline-block">' +
+              // '<a href="javascript:;" class="btn btn-sm btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="ti ti-dots-vertical ti-md"></i></a>' +
+              // '<ul class="dropdown-menu dropdown-menu-end m-0">' +
+              // '<li><a href="javascript:;" class="dropdown-item">Details</a></li>' +
+              // '<li><a href="javascript:;" class="dropdown-item">Archive</a></li>' +
+              // '<div class="dropdown-divider"></div>' +
+              // '<li><a href="javascript:;" class="dropdown-item text-danger delete-record">Delete</a></li>' +
+              // '</ul>' +
+              // '</div>' +
+              '<div class="d-flex">' +
+              '<a href="/admin/mahasiswa/' + full.id + '/edit" class="btn btn-sm btn-text-secondary rounded-pill btn-icon item-edit"><i class="ti ti-pencil ti-md"></i></a>' +
+              '<a href="javascript:;" class="btn btn-sm btn-text-secondary rounded-pill btn-icon item-destroy"><i class="ti ti-trash ti-md"></i></a>' +
+              '</div>'
             );
           }
         }
@@ -398,33 +401,31 @@ $(function () {
     $('div.head-label').html('<h5 class="card-title mb-0">DataTable with Buttons</h5>');
   }
 
-  // Add New record
-  // ? Remove/Update this code as per your requirements
-  var count = 101;
-  // On form submit, if form is valid
-  fv.on('core.form.valid', function () {
-    var $new_name = $('.add-new-record .dt-full-name').val(),
-      $new_post = $('.add-new-record .dt-post').val(),
-      $new_email = $('.add-new-record .dt-email').val(),
-      $new_date = $('.add-new-record .dt-date').val(),
-      $new_salary = $('.add-new-record .dt-salary').val();
+  // Delete record with route destroy
+  $('.datatables-basic tbody').on('click', '.item-destroy', function () {
+    var data = dt_basic.row($(this).parents('tr')).data();
+    var id = data.id; // Get the ID of the record to delete
 
-    if ($new_name != '') {
-      dt_basic.row
-        .add({
-          id: count,
-          full_name: $new_name,
-          post: $new_post,
-          email: $new_email,
-          start_date: $new_date,
-          salary: '$' + $new_salary,
-          status: 5
-        })
-        .draw();
-      count++;
+    // Show confirmation dialog
+    if (confirm('Are you sure you want to delete this record?')) {
+      // Send DELETE request to the server
+      $.ajax({
+        url: '/api/mahasiswa/destroy/' + id,
+        type: 'DELETE',
+        success: function (response) {
+          // Show success message
+          // toastr.success(response.message || 'Data mahasiswa berhasil dihapus.');
+          alert(response.message || 'Data mahasiswa berhasil dihapus.');
 
-      // Hide offcanvas using javascript method
-      offCanvasEl.hide();
+          // Refresh the DataTable
+          dt_basic.ajax.reload(null, false);
+        },
+        error: function (xhr) {
+          // Show error message
+          // toastr.error(xhr.responseJSON?.message || 'Failed to delete record');
+          alert('Failed to delete record: ' + (xhr.responseJSON?.message || error));
+        }
+      });
     }
   });
 

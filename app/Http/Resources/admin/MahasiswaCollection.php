@@ -35,6 +35,7 @@ class MahasiswaCollection extends ResourceCollection
       ->map(
         function ($mahasiswa) {
           return [
+            'id' => $mahasiswa->id,
             'program_studi' => $mahasiswa->programStudi->nama,
             'kelas' => $mahasiswa->kelas->pararel,
             'nrp' => $mahasiswa->nrp,
