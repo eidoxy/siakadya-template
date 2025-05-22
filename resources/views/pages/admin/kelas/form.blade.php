@@ -52,9 +52,9 @@
             </div>
           </div>
           <div class="col-md-6">
-            <label class="form-label" for="password">Dosen</label>
+            <label class="form-label" for="dosen-id">Dosen</label>
             <div class="col-sm-12">
-              <select name="dosen_id" id="dosen" class="select2 form-select" data-allow-clear="true">
+              <select name="dosen_id" id="dosen-id" class="select2 form-select" data-allow-clear="true">
                 <option value="">Select</option>
                 @foreach($dosen as $d)
                   <option value="{{ $d->id }}"{{ (isset($kelas) && $kelas->dosen_id == $d->id) ? 'selected' : '' }}>
